@@ -1,5 +1,5 @@
 import React from 'react';
-import Paperbase from './paperbase/Paperbase';
+import Paperbase from './Paperbase';
 
 const App = ()=>{
     return (
