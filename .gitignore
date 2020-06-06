@@ -231,4 +231,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Build file
+/build
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,node,visualstudiocode,intellij,windows
