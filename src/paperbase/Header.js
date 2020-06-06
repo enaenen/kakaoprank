@@ -79,7 +79,7 @@ function Header(props) {
           <Grid container alignItems="center" spacing={1}>
             <Grid item xs>
               <Typography color="inherit" variant="h5" component="h1">
-                Authentication
+                카카오톡 낚시꾼
               </Typography>
             </Grid>
             <Grid item>
@@ -105,10 +105,10 @@ function Header(props) {
         elevation={0}
       >
         <Tabs value={0} textColor="inherit">
-          <Tab textColor="inherit" label="Users" />
-          <Tab textColor="inherit" label="Sign-in method" />
-          <Tab textColor="inherit" label="Templates" />
-          <Tab textColor="inherit" label="Usage" />
+          <Tab textColor="inherit" label="송금하기" />
+          <Tab textColor="inherit" label="봉투보내기" />
+          <Tab textColor="inherit" label="뿌리기" />
+          <Tab textColor="inherit" label="기프티콘" />
         </Tabs>
       </AppBar>
     </React.Fragment>
