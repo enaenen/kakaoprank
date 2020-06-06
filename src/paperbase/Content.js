@@ -18,18 +18,30 @@ const styles = (theme) => ({
   searchBar: {
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
   },
-  searchInput: {
+  amountInput: {
     fontSize: theme.typography.fontSize,
   },
   block: {
     display: 'block',
   },
-  addUser: {
+  share: {
     marginRight: theme.spacing(1),
   },
   contentWrapper: {
     margin: '40px 16px',
   },
+  leftArea: {
+    width: '50%',
+    float: 'left',
+    'box-sizing': 'border-box',
+  },
+  rightArea: {
+    width: '50%',
+    float: 'right',
+    'box-sizing': 'border-box',
+    'margin-bottom': '40px',
+  }
+
 });
 
 function Content(props) {
@@ -41,27 +53,38 @@ function Content(props) {
         <Toolbar>
           <Grid container spacing={2} alignItems="center">
             <Grid item xs>
-              <TextField
+              {/* <TextField
                 fullWidth
                 placeholder="금액을 입력하세요."
                 InputProps={{
                   disableUnderline: true,
                   className: classes.searchInput,
                 }}
-              />
+              /> */}
+              송금하기
             </Grid>
             <Grid item>
-              <Button variant="contained" color="primary" className={classes.addUser}>
-                전송하기
+              <Button variant="contained" color="primary" className={classes.share}>
+                공유하기
               </Button>
             </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
       <div className={classes.contentWrapper}>
-        <Typography color="textSecondary" align="center">
-          No users for this project yet
-        </Typography>
+        
+        <div className={classes.leftArea}>
+              <Typography>
+                미리보기 그림표시
+                {/* <img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d99d71cb-8081-40da-b975-3f5c58d571d9/money.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200606%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200606T065819Z&X-Amz-Expires=86400&X-Amz-Signature=fb584d1a3a824bd42ad386f79c0fe80d97d7124ca1f824161aebeb25525b7f2a&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22money.png%22' alt="x"></img> */}
+              </Typography>
+        </div>
+
+       <div className={classes.rightArea}>
+         <form className={classes.root} noValidate autoComplete="off">
+            <TextField id="outlined-basicc" label="금액" variant="outlined" />
+          </form>
+        </div>
       </div>
     </Paper>
   );
