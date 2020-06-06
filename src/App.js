@@ -1,10 +1,10 @@
 import React from 'react';
-import Navigator from './paperbase/Navigator';
+import Paperbase from './paperbase/Paperbase';
 
 const App = ()=>{
     return (
         <div className="App">
-            <Navigator></Navigator>
+            <Paperbase></Paperbase>
         </div>
     );
 }
