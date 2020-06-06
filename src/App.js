@@ -1,7 +1,10 @@
 import React from 'react';
+import Navigator from './paperbase/Navigator';
 
-function App() {
-    return ( <div className = "App" >
+const App = ()=>{
+    return (
+        <div className="App">
+            <Navigator></Navigator>
         </div>
     );
 }
