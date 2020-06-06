@@ -4,8 +4,8 @@ import { createMuiTheme, ThemeProvider, withStyles } from '@material-ui/core/sty
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import Content from './Content';
-import Header from './Header';
+import Content from './components/Content';
+import Header from './components/Header';
 
 function Copyright() {
   return (
