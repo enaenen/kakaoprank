@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { createMuiTheme, ThemeProvider, withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -161,6 +161,7 @@ const styles = {
 
 function Paperbase(props) {
   const { classes } = props;
+  const [tabIndex, setTabIndex] = useState(0);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -172,9 +173,10 @@ function Paperbase(props) {
       <div className={classes.root}>
         <CssBaseline />
         <div className={classes.app}>
-          <Header onDrawerToggle={handleDrawerToggle} />
+          <Header onDrawerToggle={handleDrawerToggle} tabIndex={tabIndex} setTabIndex={setTabIndex}/>
           <main className={classes.main}>
             <Content />
+            {tabIndex}
           </main>
           <footer className={classes.footer}>
             <Copyright />

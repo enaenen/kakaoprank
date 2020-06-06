@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Avatar from '@material-ui/core/Avatar';
@@ -104,11 +104,11 @@ function Header(props) {
         position="static"
         elevation={0}
       >
-        <Tabs value={0} textColor="inherit">
-          <Tab textColor="inherit" label="송금하기" />
-          <Tab textColor="inherit" label="봉투보내기" />
-          <Tab textColor="inherit" label="뿌리기" />
-          <Tab textColor="inherit" label="기프티콘" />
+        <Tabs value={props.tabIndex} textColor="inherit">
+          <Tab textColor="inherit" label="송금하기" onClick = {()=>props.setTabIndex(0)}/>
+          <Tab textColor="inherit" label="봉투보내기" onClick = {()=>props.setTabIndex(1)}/>
+          <Tab textColor="inherit" label="뿌리기" onClick = {()=>props.setTabIndex(2)}/>
+          <Tab textColor="inherit" label="기프티콘" onClick = {()=>props.setTabIndex(3)}/>
         </Tabs>
       </AppBar>
     </React.Fragment>
