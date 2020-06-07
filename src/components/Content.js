@@ -9,6 +9,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import TransferMoney from './innerContent/TransferMoney';
+import SendEnvelope from './innerContent/SendEnvelope';
+import CashSpread from './innerContent/CashSpread'
+import SendGifticon from './innerContent/SendGifticon';
 
 const styles = (theme) => ({
   paper: {
@@ -35,6 +38,24 @@ const styles = (theme) => ({
 });
 function Content(props) {
   const { classes } = props;
+  const innerContents = [
+      {
+        tag : <TransferMoney/>,
+        title : "송금하기"
+      },
+      {
+        tag : <SendEnvelope/>,
+        title : "봉투보내기"
+      },
+      {
+        tag : <CashSpread/>,
+        title : "뿌리기"
+      },
+      {
+        tag : <SendGifticon/>,
+        title : "기프티콘"
+      }
+    ];
 
   return (
     <Paper className={classes.paper}>
@@ -42,7 +63,7 @@ function Content(props) {
         <Toolbar>
           <Grid container spacing={2} alignItems="center">
             <Grid item xs>
-              송금하기
+              {innerContents[props.tabIndex].title}
             </Grid>
             <Grid item>
               <Button variant="contained" color="primary" className={classes.share}>
@@ -53,7 +74,7 @@ function Content(props) {
         </Toolbar>
       </AppBar>
       <div className={classes.contentWrapper}>
-        <TransferMoney></TransferMoney>
+        {innerContents[props.tabIndex].tag}
       </div>
     </Paper>
   );
