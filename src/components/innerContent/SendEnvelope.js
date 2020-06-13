@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -36,19 +36,77 @@ const styles = (theme) => ({
 function SendEnvelope(props) {
   const { classes } = props;
 
+  useEffect(() => {
+    if(true){
+      window.Kakao.Link.createDefaultButton({
+        container: '#kakao-link-btn',
+        objectType: 'feed',
+        content: {
+            title: '봉투가 도착했어요.',
+            description: '',
+            imageUrl: 'https://i.ibb.co/fCrY699/jungsaan.png', // 이미지
+            //imageWidth: 264, imageHeight : 100,
+            imageWidth: 150, imageHeight : 50,
+            link: {
+                mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg',
+                webUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
+            }
+        },
+        buttons: [
+            {
+                title: '줍기',
+                link: {
+                    mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
+                }
+            }],
+          success: function(response) {
+              console.log(response);
+          },
+          fail: function(error) {
+              console.log(error);
+          }
+      });
+    }
+  
+  },[]);
+  
+
   return (
+    <>
       <div>
         <div className={classes.leftArea}>
-            <img src='https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b03b13c3-b39e-4fcb-9c54-406fb04e2826/fake.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200606%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200606T083251Z&X-Amz-Expires=86400&X-Amz-Signature=8958b83114b069fe5a1ac8fdc32963a29fe6bec2a480f75b99cc3e2be959125f&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22fake.jpg%22'
+
+            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
             className={classes.img} alt="x"></img>
+            
+            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
+            className={classes.img} alt="x"></img>
+            
+            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
+            className={classes.img} alt="x"></img>
+            
+            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
+            className={classes.img} alt="x"></img>
+            
+            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
+            className={classes.img} alt="x"></img>
+            
+            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
+            className={classes.img} alt="x"></img>
+            
+            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
+            className={classes.img} alt="x"></img>
+            
+            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
+            className={classes.img} alt="x"></img>
+            
+            
         </div>
         <div className={classes.rightArea}>
-            <form className={classes.btn} noValidate autoComplete="off">
-            봉투보내기
-            <TextField id="outlined-basicc" label="금액" variant="outlined" />
-            </form>
+          오른쪽공간
         </div>
     </div>
+    </>
   );
 }
 
