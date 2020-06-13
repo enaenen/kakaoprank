@@ -36,19 +36,9 @@ const styles = (theme) => ({
 function TransferMoney(props) {
   const { classes } = props;
 
-  // useEffect(() => {
-  //   console.log("useEffect")
-  //   const script = document.createElement("script");
-  //   script.async = true;
-  //   script.src ="//developers.kakao.com/sdk/js/kakao.min.js";
-  //   document.body.appendChild(script);
-  // },[]);
 
   useEffect(() => {
-    if(window.Kakao != undefined){
-      window.Kakao.init('762a46d7e5b7dbece3eddbb232189a84');
-      console.log(window.Kakao);
-      
+    if(true){
       window.Kakao.Link.createDefaultButton({
           container: '#kakao-link-btn',  // 컨테이너는 아까 위에 버튼이 쓰여진 부분 id
           objectType: 'feed',

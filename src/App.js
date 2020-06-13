@@ -2,14 +2,7 @@ import React, {useEffect} from 'react';
 import Paperbase from './Paperbase';
 
 const App = ()=>{
-    useEffect(() => {
-        console.log("useEffect")
-        const script = document.createElement("script");
-        //script.async = true;
-        script.src ="//developers.kakao.com/sdk/js/kakao.min.js";
-        document.body.appendChild(script);
-      },[]);
-
+    window.Kakao.init('762a46d7e5b7dbece3eddbb232189a84');
 
     return (
         <div className="App">

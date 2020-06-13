@@ -66,7 +66,7 @@ function Content(props) {
               {innerContents[props.tabIndex].title}
             </Grid>
             <Grid item>
-              <Button variant="contained" color="primary" className={classes.share}>
+              <Button variant="contained" color="primary" id="kakao-link-btn" className={classes.share}>
                 공유하기
               </Button>
             </Grid>
