@@ -12,6 +12,7 @@ import TransferMoney from './innerContent/TransferMoney';
 import SendEnvelope from './innerContent/SendEnvelope';
 import CashSpread from './innerContent/CashSpread'
 import SendGifticon from './innerContent/SendGifticon';
+import ShareIcon from "@material-ui/icons/ShareRounded"
 
 const styles = (theme) => ({
   paper: {
@@ -30,6 +31,8 @@ const styles = (theme) => ({
   },
   share: {
     marginRight: theme.spacing(1),
+    backgroundColor: '#fbe300',
+    color: '#3b1e1e'
   },
   contentWrapper: {
     margin: '40px 16px',
@@ -66,8 +69,8 @@ function Content(props) {
               {innerContents[props.tabIndex].title}
             </Grid>
             <Grid item>
-              <Button variant="contained" color="primary" id="kakao-link-btn" className={classes.share}>
-                공유하기
+              <Button startIcon={<ShareIcon/>} variant="contained" color="primary" id="kakao-link-btn" className={classes.share}>
+                카카오톡 공유하기
               </Button>
             </Grid>
           </Grid>
