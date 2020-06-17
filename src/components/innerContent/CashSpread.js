@@ -41,12 +41,11 @@ const styles = (theme) => ({
 
 function CashSpread(props) {
   const { classes } = props;
-  
-  useEffect(() => {
-    if(true){
-      window.Kakao.Link.createDefaultButton({
-        container: '#kakao-link-btn',
-        objectType: 'feed',
+
+
+  const onClickShare = () => {
+    window.Kakao.Link.sendDefault({
+      objectType: 'feed',
         content: {  // 실제 내용
             title: '',
             description: '',
@@ -70,25 +69,21 @@ function CashSpread(props) {
         fail: function(error) {
             console.log(error);
         }
-    });
-
-    }
-  
-  },[]);
-  
+    })
+  };
   
 
   return (
       <div>
         <div className={classes.leftArea}>
-            <img src='https://i.ibb.co/pbnwSf0/image.jpg'
+            <img src='https://i.ibb.co/1ZKWgrR/v3.png'
             className={classes.img} alt="x"></img>
         </div>
         <div className={classes.rightArea}>
             <form className={classes.btn} noValidate autoComplete="off">
             <TextField id="outlined-basicc" label="금액" variant="outlined" />
             </form>
-            <Button startIcon={<ShareIcon/>} variant="contained" color="primary" id="kakao-link-btn" className={classes.share}>
+            <Button startIcon={<ShareIcon/>} variant="contained" color="primary" onClick={()=>onClickShare()} className={classes.share}>
                  공유하기
               </Button>
         </div>
