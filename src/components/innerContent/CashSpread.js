@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, createRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,7 +8,9 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
-import ShareIcon from "@material-ui/icons/ShareRounded"
+import ShareIcon from "@material-ui/icons/ShareRounded";
+import { Stage, Layer, Image, Text } from 'react-konva';
+import useImage from 'use-image';
 
 const styles = (theme) => ({
   leftArea: {
@@ -36,12 +38,21 @@ const styles = (theme) => ({
   btn: {
     'text-align' : 'center',
   }
-
 });
+
+const PreviewImg = () => {
+  const [image] = useImage('https://i.ibb.co/fFtxfP2/v3.png');
+  return <Image image={image} width="300" height="300" />;
+};
+PreviewImg.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+
 
 function CashSpread(props) {
   const { classes } = props;
-
+  const { canvasUrl, setCanvasUrl } = useState("11111111"); 
 
   const onClickShare = () => {
     window.Kakao.Link.sendDefault({
@@ -75,9 +86,21 @@ function CashSpread(props) {
 
   return (
       <div>
+        {canvasUrl}
         <div className={classes.leftArea}>
-            <img src='https://i.ibb.co/1ZKWgrR/v3.png'
-            className={classes.img} alt="x"></img>
+          <Stage width={300} height={300}>
+            <Layer>
+              <PreviewImg />
+            <Text
+              fontSize={16}
+              text={`빨리 줍줍 하세요!!\n\n금액은 랜덤!\n총 5,000원\n최고 5,000원\n\n기회는 선착순 1명 에게만\n10분 후 마감됩니다.`}
+              // wrap="char"
+              x={20}
+              y={150}
+              width={700}
+            />
+            </Layer>
+          </Stage>
         </div>
         <div className={classes.rightArea}>
             <form className={classes.btn} noValidate autoComplete="off">
@@ -85,7 +108,9 @@ function CashSpread(props) {
             </form>
             <Button startIcon={<ShareIcon/>} variant="contained" color="primary" onClick={()=>onClickShare()} className={classes.share}>
                  공유하기
-              </Button>
+            </Button>
+            <div>
+            </div>
         </div>
     </div>
   );
@@ -94,5 +119,4 @@ function CashSpread(props) {
 CashSpread.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
 export default withStyles(styles)(CashSpread);
