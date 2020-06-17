@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import ShareIcon from "@material-ui/icons/ShareRounded"
 
 const styles = (theme) => ({
   leftArea: {
@@ -9,6 +11,11 @@ const styles = (theme) => ({
     float: 'left',
     'box-sizing': 'border-box',
     'text-align' : 'center',
+  },
+  share: {
+    marginRight: theme.spacing(1),
+    backgroundColor: '#fbe300',
+    color: '#3b1e1e'
   },
   rightArea: {
     width: '50%',
@@ -74,9 +81,11 @@ function TransferMoney(props) {
         <div className={classes.rightArea}>
             <form className={classes.btn} noValidate autoComplete="off">
             <TextField id="outlined-basicc" label="금액" variant="outlined"/>
+            <Button startIcon={<ShareIcon/>} variant="contained" color="primary" id="kakao-link-btn" className={classes.share}>
+                 공유하기
+              </Button>
             </form>
         </div>
-        <button onClick = {()=>console.log(window.Kakao)}>임시</button>
     </>
   );
 }
