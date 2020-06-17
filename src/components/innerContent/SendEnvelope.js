@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -42,15 +42,15 @@ const styles = (theme) => ({
 function SendEnvelope(props) {
   const { classes } = props;
 
-  useEffect(() => {
-    if(true){
-      window.Kakao.Link.createDefaultButton({
-        container: '#kakao-link-btn',
+  const [link, setLink] = useState('');
+
+  const onClickShare =() => {
+      window.Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
             title: '봉투가 도착했어요.',
             description: '',
-            imageUrl: 'https://i.ibb.co/fCrY699/jungsaan.png', // 이미지
+            imageUrl: `${link}`, // 이미지
             //imageWidth: 264, imageHeight : 100,
             imageWidth: 150, imageHeight : 50,
             link: {
@@ -62,7 +62,7 @@ function SendEnvelope(props) {
             {
                 title: '줍기',
                 link: {
-                    mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
+                   mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
                 }
             }],
           success: function(response) {
@@ -74,8 +74,6 @@ function SendEnvelope(props) {
       });
     }
   
-  },[]);
-  
 
   return (
     <>
@@ -83,33 +81,33 @@ function SendEnvelope(props) {
         <div className={classes.leftArea}>
 
             <img src='https://i.ibb.co/fCrY699/jungsaan.png'
-            className={classes.img} alt="x"></img>
+            className={classes.img} alt="x" onClick={e=>setLink('https://i.ibb.co/fCrY699/jungsaan.png')}></img>
             
-            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
-            className={classes.img} alt="x"></img>
+            <img src='https://i.ibb.co/0VQB5Cv/thankyouv3.png'
+            className={classes.img} alt="x" onClick={e=>setLink('https://i.ibb.co/0VQB5Cv/thankyouv3.png')}></img>
             
-            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
-            className={classes.img} alt="x"></img>
+            <img src='https://i.ibb.co/6tpn2rM/yongdon.png'
+            className={classes.img} alt="x" onClick={e=>setLink('https://i.ibb.co/6tpn2rM/yongdon.png')}></img>
             
-            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
-            className={classes.img} alt="x"></img>
+            <img src='https://i.ibb.co/QMYMBDs/marriage.png'
+            className={classes.img} alt="x" onClick={e=>setLink('https://i.ibb.co/QMYMBDs/marriage.png')}></img>
             
-            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
-            className={classes.img} alt="x"></img>
+            <img src='https://i.ibb.co/xqFwhsQ/saveit.png'
+            className={classes.img} alt="x" onClick={e=>setLink('https://i.ibb.co/xqFwhsQ/saveit.png')}></img>
             
-            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
-            className={classes.img} alt="x"></img>
+            <img src='https://i.ibb.co/tBNPJVq/myheart.png'
+            className={classes.img} alt="x" onClick={e=>setLink('https://i.ibb.co/tBNPJVq/myheart.png')}></img>
             
-            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
-            className={classes.img} alt="x"></img>
+            <img src='https://i.ibb.co/WDkHf67/berich.png'
+            className={classes.img} alt="x" onClick={e=>setLink('https://i.ibb.co/WDkHf67/berich.png')}></img>
             
-            <img src='https://i.ibb.co/fCrY699/jungsaan.png'
-            className={classes.img} alt="x"></img>
+            <img src='https://i.ibb.co/ZSJKnyY/congratulation.png'
+            className={classes.img} alt="x" onClick={e=>setLink('https://i.ibb.co/ZSJKnyY/congratulation.png')}></img>
             
             
         </div>
         <div className={classes.rightArea}>
-        <Button startIcon={<ShareIcon/>} variant="contained" color="primary" id="kakao-link-btn" className={classes.share}>
+        <Button startIcon={<ShareIcon/>} variant="contained" color="primary" id="kakao-link-btn" className={classes.share} onClick={()=>onClickShare()}>
                  공유하기
               </Button>
         </div>
