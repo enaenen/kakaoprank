@@ -69,9 +69,9 @@ function Content(props) {
               {innerContents[props.tabIndex].title}
             </Grid>
             <Grid item>
-              <Button startIcon={<ShareIcon/>} variant="contained" color="primary" id="kakao-link-btn" className={classes.share}>
+              {/* <Button startIcon={<ShareIcon/>} variant="contained" color="primary" id="kakao-link-btn" className={classes.share}>
                 카카오톡 공유하기
-              </Button>
+              </Button> */}
             </Grid>
           </Grid>
         </Toolbar>
