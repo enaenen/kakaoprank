@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
@@ -36,15 +36,13 @@ const styles = (theme) => ({
 
 function TransferMoney(props) {
   const { classes } = props;
+  const [amount, setAmount] = useState(0);
 
-
-  useEffect(() => {
-    if(true){
-      window.Kakao.Link.createDefaultButton({
-          container: '#kakao-link-btn',  // 컨테이너는 아까 위에 버튼이 쓰여진 부분 id
-          objectType: 'feed',
+  const onClickShare = () => {
+    window.Kakao.Link.sendDefault({
+      objectType: 'feed',
           content: {  // 여기부터 실제 내용이 들어갑니다.
-              title: '100,000 원을 받으세요', // 본문 제목
+              title: `${amount} 원을 받으세요`, // 본문 제목
               description: '',  // 본문 바로 아래 들어가는 영역
               imageUrl: 'https://i.ibb.co/VCgVm21/fdefdf.png', // 이미지
               //imageWidth: 264, imageHeight : 100,
@@ -66,22 +64,26 @@ function TransferMoney(props) {
           fail: function(error) {
               console.log(error);
           }
-      });
-    }
-  
-  },[]);
-  
+    })
+  };
+  const onChangeShareAmount = (e) => {
+    let val = e.target.value.replace(/[^0-9]/g,'');
+    val = new Intl.NumberFormat().format(val);
+    setAmount(val);
+  }
+  const toFormatNum = (num) => new Intl.NumberFormat().format(num)
 
   return (
       <>
+        {amount}
         <div className={classes.leftArea}>
             <img src='https://i.ibb.co/LgGBqDj/money.png'
             className={classes.img} alt="x"></img>
         </div>
         <div className={classes.rightArea}>
             <form className={classes.btn} noValidate autoComplete="off">
-            <TextField id="outlined-basicc" label="금액" variant="outlined"/>
-            <Button startIcon={<ShareIcon/>} variant="contained" color="primary" id="kakao-link-btn" className={classes.share}>
+            <TextField id="outlined-basicc" label="금액" variant="outlined" value = {amount} onChange = {(e)=>onChangeShareAmount(e)}/>
+            <Button startIcon={<ShareIcon/>} variant="contained" color="primary" id="kakao-link-btn" className={classes.share} onClick={()=>onClickShare()}>
                  공유하기
               </Button>
             </form>
