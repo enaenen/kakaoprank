@@ -176,7 +176,6 @@ function Paperbase(props) {
           <Header onDrawerToggle={handleDrawerToggle} tabIndex={tabIndex} setTabIndex={setTabIndex}/>
           <main className={classes.main}>
             <Content tabIndex={tabIndex}/>
-            {tabIndex}
           </main>
           <footer className={classes.footer}>
             <Copyright />
