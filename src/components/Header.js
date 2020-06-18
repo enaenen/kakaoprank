@@ -18,9 +18,9 @@ import { withStyles } from '@material-ui/core/styles';
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 const styles = (theme) => ({
-  secondaryBar: {
-    zIndex: 0,
-  },
+  // secondaryBar: {
+  //   zIndex: 0,
+  // },
   menuButton: {
     marginLeft: -theme.spacing(1),
   },
@@ -52,6 +52,11 @@ function Header(props) {
               <Link className={classes.link} href="#" variant="body2">
                 Go to docs
               </Link>
+              </Grid>
+              <Grid item>
+              <Link className={classes.link} href="#" variant="body2">
+                Go to docs
+              </Link>
             </Grid>
             <Grid item>
               <Tooltip title="Alerts • No alerts">
@@ -72,7 +77,7 @@ function Header(props) {
         component="div"
         className={classes.secondaryBar}
         color="primary"
-        position="static"
+        position="sticky"
         elevation={0}
       >
         <Toolbar>
@@ -82,18 +87,6 @@ function Header(props) {
                 카카오톡 낚시꾼
               </Typography>
             </Grid>
-            <Grid item>
-              <Button className={classes.button} variant="outlined" color="inherit" size="small">
-                Web setup
-              </Button>
-            </Grid>
-            <Grid item>
-              <Tooltip title="Help">
-                <IconButton color="inherit">
-                  <HelpIcon />
-                </IconButton>
-              </Tooltip>
-            </Grid>
           </Grid>
         </Toolbar>
       </AppBar>
@@ -101,7 +94,7 @@ function Header(props) {
         component="div"
         className={classes.secondaryBar}
         color="primary"
-        position="static"
+        position="sticky"
         elevation={0}
       >
         <Tabs value={props.tabIndex} textColor="inherit">
