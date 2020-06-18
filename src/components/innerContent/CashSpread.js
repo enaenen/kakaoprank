@@ -103,12 +103,23 @@ function CashSpread(props) {
           </Stage>
         </div>
         <div className={classes.rightArea}>
-            <form className={classes.btn} noValidate autoComplete="off">
-            <TextField id="outlined-basicc" label="금액" variant="outlined" />
-            </form>
-            <Button startIcon={<ShareIcon/>} variant="contained" color="primary" onClick={()=>onClickShare()} className={classes.share}>
-                 공유하기
-            </Button>
+          <Grid container spacing={3}>
+               <Grid item>
+                <form className={classes.btn} noValidate autoComplete="off">
+                <TextField id="outlined-basicc" label="총 금액" variant="outlined" />
+                </form>
+              </Grid>
+              <Grid item>
+                <form className={classes.btn} noValidate autoComplete="off">
+                <TextField id="outlined-basicc" label="최고 금액" variant="outlined" />
+                </form>
+              </Grid>
+              <Grid item>
+                <Button startIcon={<ShareIcon/>} variant="contained" color="primary" onClick={()=>onClickShare()} className={classes.share}>
+                    공유하기
+                </Button>
+              </Grid>
+            </Grid>
             <div>
             </div>
         </div>
