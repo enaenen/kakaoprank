@@ -1,4 +1,4 @@
-import React, {useEffect, createRef, useState} from 'react';
+import React, {useEffect, createRef, useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -41,7 +41,7 @@ const styles = (theme) => ({
 });
 
 const PreviewImg = () => {
-  const [image] = useImage('https://i.ibb.co/fFtxfP2/v3.png');
+  const [image] = useImage('https://i.ibb.co/fFtxfP2/v3.png', 'Anonymous');
   return <Image image={image} width="300" height="300" />;
 };
 PreviewImg.propTypes = {
@@ -53,14 +53,25 @@ PreviewImg.propTypes = {
 function CashSpread(props) {
   const { classes } = props;
   const { canvasUrl, setCanvasUrl } = useState("11111111"); 
+  const stageRef = useRef(null);
 
-  const onClickShare = () => {
+  const onClickShare = (e) => {
+
+    e.preventDefault();
+    const dataURL = stageRef.current.toDataURL({
+      mimeType: "image/jpeg",
+      quality: 0,
+      pixelRatio: 2
+    });
+    console.log(dataURL);
+
     window.Kakao.Link.sendDefault({
       objectType: 'feed',
         content: {  // 실제 내용
             title: '',
             description: '',
             imageUrl: 'https://i.ibb.co/1ZKWgrR/v3.png',
+            //imageUrl: dataURL,
           //  imageWidth: 500, imageHeight : 500,
             link: {
                 mobileWebUrl: 'https://i.ibb.co/64WBxQg/mqdefault.jpg',
@@ -80,7 +91,27 @@ function CashSpread(props) {
         fail: function(error) {
             console.log(error);
         }
-    })
+    });
+  };
+
+  const downloadURI = (uri, name) => {
+    const link = document.createElement("a");
+    link.download = name;
+    link.href = uri;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleSaveImage = event => {
+    event.preventDefault();
+    console.log(stageRef);
+    const dataURL = stageRef.current.toDataURL({
+      mimeType: "image/jpeg",
+      quality: 0,
+      pixelRatio: 2
+    });
+    downloadURI(dataURL, "test");
   };
   
 
@@ -88,12 +119,12 @@ function CashSpread(props) {
       <div>
         {canvasUrl}
         <div className={classes.leftArea}>
-          <Stage width={300} height={300}>
+          <Stage ref={stageRef} width={300} height={300}>
             <Layer>
               <PreviewImg />
             <Text
               fontSize={16}
-              text={`빨리 줍줍 하세요!!\n\n금액은 랜덤!\n총 5,000원\n최고 5,000원\n\n기회는 선착순 1명 에게만\n10분 후 마감됩니다.`}
+              text={`빨리 줍줍 하세요!!\n\n금액은 랜덤!\n총 5,123원\n최고 5,000원\n\n기회는 선착순 1명 에게만\n10분 후 마감됩니다.`}
               // wrap="char"
               x={20}
               y={150}
@@ -101,6 +132,7 @@ function CashSpread(props) {
             />
             </Layer>
           </Stage>
+          <Button onClick = {(e) => handleSaveImage(e)}>임시버튼</Button>
         </div>
         <div className={classes.rightArea}>
           <Grid container spacing={3}>
@@ -115,7 +147,7 @@ function CashSpread(props) {
                 </form>
               </Grid>
               <Grid item>
-                <Button startIcon={<ShareIcon/>} variant="contained" color="primary" onClick={()=>onClickShare()} className={classes.share}>
+                <Button startIcon={<ShareIcon/>} variant="contained" color="primary" onClick={(e)=>onClickShare(e)} className={classes.share}>
                     공유하기
                 </Button>
               </Grid>
