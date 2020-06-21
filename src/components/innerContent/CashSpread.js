@@ -49,8 +49,6 @@ PreviewImg.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-
-
 function CashSpread(props) {
   const { classes } = props;
   const { canvasUrl, setCanvasUrl } = useState("11111111"); 
@@ -66,62 +64,45 @@ function CashSpread(props) {
       pixelRatio: 2
     });
 
+    const kakaoLinkUi = {
+      objectType: 'feed',
+        content: {  // 실제 내용
+            title: '',
+            description: '',
+            //imageUrl: resImage,
+            //imageWidth: 500, imageHeight : 500,
+            link: {
+                mobileWebUrl: 'https://i.ibb.co/64WBxQg/mqdefault.jpg',
+                webUrl: 'https://i.ibb.co/64WBxQg/mqdefault.jpg'
+            }
+        },
+        buttons: [
+            {
+                title: '줍기',
+                link: {
+                    mobileWebUrl: 'https://i.ibb.co/64WBxQg/mqdefault.jpg'
+                }
+            }],
+        success: function(response) {
+            console.log(response);
+        },
+        fail: function(error) {
+          console.log(error);
+        }
+    };
+
     const imgFile = ImageParser.base64ToFile(imgBase64, "preview.jpg");
     const imgFileList = ImageParser.fileToFileList(imgFile);
-  
-    window.Kakao.Link.uploadImage({
-      file: imgFileList
-    }).then(function(res){
-      const resImage = res.infos.original.url;
 
-      window.Kakao.Link.sendDefault({
-        objectType: 'feed',
-          content: {  // 실제 내용
-              title: '',
-              description: '',
-              //imageUrl: 'https://i.ibb.co/1ZKWgrR/v3.png',
-              imageUrl: resImage,
-            //  imageWidth: 500, imageHeight : 500,
-              link: {
-                  mobileWebUrl: 'https://i.ibb.co/64WBxQg/mqdefault.jpg',
-                  webUrl: 'https://i.ibb.co/64WBxQg/mqdefault.jpg'
-              }
-          },
-          buttons: [
-              {
-                  title: '줍기',
-                  link: {
-                      mobileWebUrl: 'https://i.ibb.co/64WBxQg/mqdefault.jpg'
-                  }
-              }],
-          success: function(response) {
-              console.log(response);
-          },
-          fail: function(error) {
-              console.log(error);
-          }
+    const uploadImagePromise = (imgFiles) => window.Kakao.Link.uploadImage(imgFiles);
+    const sendDefaultPromise = (kakaoLinkUi) => window.Kakao.Link.sendDefault(kakaoLinkUi);
+
+    uploadImagePromise({file : imgFileList})
+      .then((res)=>{
+        const resImage = res.infos.original.url;
+        kakaoLinkUi.content.imageUrl = resImage;
+        sendDefaultPromise(kakaoLinkUi);
       });
-    });
-  };
-
-  const downloadURI = (uri, name) => {
-    const link = document.createElement("a");
-    link.download = name;
-    link.href = [uri];
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-  const handleSaveImage = event => {
-    event.preventDefault();
-    console.log(stageRef);
-    const dataURL = stageRef.current.toDataURL({
-      mimeType: "image/jpeg",
-      quality: 0,
-      pixelRatio: 2
-    });
-    downloadURI(dataURL, "test");
   };
   
 
@@ -142,7 +123,6 @@ function CashSpread(props) {
             />
             </Layer>
           </Stage>
-          <Button onClick = {(e) => handleSaveImage(e)}>임시버튼</Button>
           <input type="file" name="file" ref ={tempRef} />
         </div>
         <div className={classes.rightArea}>
