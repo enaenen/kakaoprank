@@ -60,8 +60,8 @@ function CashSpread(props) {
 
     const imgBase64 = stageRef.current.toDataURL({
       mimeType: "image/jpeg",
-      quality: 0,
-      pixelRatio: 2
+      quality: 1,
+      pixelRatio: 4
     });
 
     const kakaoLinkUi = {
@@ -114,14 +114,14 @@ function CashSpread(props) {
   return (
       <div>
         <div className={classes.leftArea}>
-          <Stage ref={stageRef} width={300} height={300}>
+          <Stage ref={stageRef} width={300} height={270}>
             <Layer>
               <PreviewImg />
             <Text
-              fontSize={16}
+              fontSize={14}
               text={`빨리 줍줍 하세요!!\n\n금액은 랜덤!\n총 ${totalAmount}원\n최고 ${maxAmount}원\n\n기회는 선착순 1명 에게만\n10분 후 마감됩니다.`}
               // wrap="char"
-              x={20}
+              x={24}
               y={150}
               width={700}
             />
