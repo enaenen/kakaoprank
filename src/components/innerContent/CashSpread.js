@@ -10,6 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import ShareIcon from "@material-ui/icons/ShareRounded";
 import { Stage, Layer, Image, Text } from 'react-konva';
+import ImageParser from '../../func/ImgParser';
 import useImage from 'use-image';
 
 const styles = (theme) => ({
@@ -40,19 +41,6 @@ const styles = (theme) => ({
   }
 });
 
-const dataURLtoFile = (dataurl, fileName) => {
-  var arr = dataurl.split(','),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]), 
-      n = bstr.length, 
-      u8arr = new Uint8Array(n);
-      
-  while(n--){
-      u8arr[n] = bstr.charCodeAt(n);
-  }
-  return new File([u8arr], fileName, {type:mime});
-}
-
 const PreviewImg = () => {
   const [image] = useImage('https://i.ibb.co/fFtxfP2/v3.png', 'Anonymous');
   return <Image image={image} width="300" height="300" />;
@@ -78,12 +66,8 @@ function CashSpread(props) {
       pixelRatio: 2
     });
 
-    const imgFile = dataURLtoFile(imgBase64, "preview.jpg");
-    let imgDataTransfer = new DataTransfer();
-    imgDataTransfer.items.add(imgFile);
-
-    const imgFileList = imgDataTransfer.files;
-    console.log(imgFileList);
+    const imgFile = ImageParser.base64ToFile(imgBase64, "preview.jpg");
+    const imgFileList = ImageParser.fileToFileList(imgFile);
   
     window.Kakao.Link.uploadImage({
       file: imgFileList
