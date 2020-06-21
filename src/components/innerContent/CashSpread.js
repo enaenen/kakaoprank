@@ -53,7 +53,6 @@ function CashSpread(props) {
   const { classes } = props;
   const [totalAmount, setTotalAmount] = useState(0);
   const [maxAmount, setMaxAmount] = useState(0);
-  const tempRef = useRef(null);
   const stageRef = useRef(null);
 
   const onClickShare = (e) => {
@@ -128,7 +127,6 @@ function CashSpread(props) {
             />
             </Layer>
           </Stage>
-          <input type="file" name="file" ref ={tempRef} />
         </div>
         <div className={classes.rightArea}>
           <Grid container spacing={3}>
