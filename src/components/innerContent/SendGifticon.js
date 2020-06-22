@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,62 +10,159 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import ShareIcon from "@material-ui/icons/ShareRounded"
 
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import MobileStepper from '@material-ui/core/MobileStepper';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
-  leftArea: {
-    width: '50%',
-    float: 'left',
-    'box-sizing': 'border-box',
-    'text-align' : 'center',
-  },
   share: {
     marginRight: theme.spacing(1),
     backgroundColor: '#fbe300',
     color: '#3b1e1e'
   },
-  rightArea: {
-    width: '50%',
-    float: 'right',
-    'box-sizing': 'border-box',
-    'margin-bottom': '40px',
-    'margin-top' : '40px',
-  },
   img: {
     'max-width': '70%',
-    'max-height': '60%',
+    'max-height': '60%'
   },
   btn: {
     'text-align' : 'center',
-  }
+  },
+  swipeBtn: {
+    maxWidth: 400,
+    flexGrow: 1,
+  },
+  parent: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+
 
 });
-//https://i.ibb.co/mR5ghm2/img1-daumcdn.jpg
-function SendGifticon(props) {
+
+function SendEnvelope(props) {
   const { classes } = props;
+  const linkList =[
+    'https://i.ibb.co/cbyf25d/gifticon-starbucks.png',
+];
+
+
+  const [swipeIdx,setswipeIdx] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
+  const [sender, setSender] = useState("");
+
+  //KAKAO API
+  const onClickShare =() => {
+      window.Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+            title: `${sender}님이 선물과 메시지를 보냈습니다.`,
+            description: '',
+            imageUrl: `${linkList[swipeIdx]}`, // 이미지
+            imageWidth: 150, imageHeight : 180,
+            link: {
+                mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg',
+                webUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
+            }
+        },
+        buttons: [
+            {
+                title: '선물함으로 하기',
+                link: {
+                   mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
+                }
+            },
+            {
+              title: '감동카드 보내기',
+              link: {
+                 mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
+              }
+          }
+        ],
+          success: function(response) {
+              console.log(response);
+          },
+          fail: function(error) {
+              console.log(error);
+          }
+      });
+    }
+  
+    //SWIPE 버튼 관련
+
+    const handleNext = () => {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      setswipeIdx((swipeIdx)=>swipeIdx + 1);
+    };
+  
+    const handleBack = () => {
+      setActiveStep((prevActiveStep) => prevActiveStep - 1);
+      setswipeIdx((swipeIdx)=>swipeIdx - 1);
+    };
+
+    const onChangeSender = (e) => {
+      setSender(e.target.value)
+    };
+
+    const theme = useTheme();
+  
 
   return (
-      <div>
-        <div className={classes.leftArea}>
-            <img src='https://i.ibb.co/mR5ghm2/img1-daumcdn.jpg'
-            className={classes.img} alt="x"></img>
-        </div>
-        <div className={classes.rightArea}>
-
-          <h2>준비중이라 미안합니다.</h2>
-            {/* <form className={classes.btn} noValidate autoComplete="off">
-            기프티콘 보내기
-            <TextField id="outlined-basicc" label="금액" variant="outlined" />
-            <Button startIcon={<ShareIcon/>} variant="contained" color="primary" id="kakao-link-btn" className={classes.share}>
+    <>
+    <div>
+        <TextField id="outlined-basicc" label="보내는 사람" variant="outlined" value = {sender} onChange = {(e)=>onChangeSender(e)}/>
+        <Button startIcon={<ShareIcon/>} variant="contained" color="primary" id="kakao-link-btn" className={classes.share} onClick={()=>onClickShare()}>
                  공유하기
-              </Button>
-            </form> */}
-        </div>
+          </Button>
     </div>
+    <div className={classes.parent}>
+      <Grid container spacing={1} className={classes.paper}>
+        <Grid item xs={3}>
+            <Button size="large" onClick={handleBack} disabled={activeStep === 0} className={classes.paper}>
+              {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+            </Button>
+
+        </Grid>
+        <Grid item xs={6} className={classes.paper}>
+           <img src={linkList[swipeIdx]} className={classes.img} alt="x" />
+        </Grid>
+        <Grid item xs={3} className={classes.paper}>
+            <Button size="large" onClick={handleNext} disabled={activeStep === 7}>
+             {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+            </Button>
+        </Grid>
+      </Grid>
+    </div>
+
+    <MobileStepper
+      variant="dots"
+      steps={8}
+      position="static"
+      activeStep={activeStep}
+      className={classes.root}
+      nextButton={
+        <Button size="medium" onClick={handleNext} disabled={activeStep === 7}>
+          
+          {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        </Button>
+      }
+      backButton={
+        <Button size="medium" onClick={handleBack} disabled={activeStep === 0}>
+          {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+          
+        </Button>
+      }
+    />
+    </>
   );
 }
 
-SendGifticon.propTypes = {
+SendEnvelope.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SendGifticon);
+export default withStyles(styles)(SendEnvelope);
