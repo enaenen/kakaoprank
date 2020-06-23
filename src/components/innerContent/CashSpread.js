@@ -14,31 +14,15 @@ import ImageParser from '../../func/ImgParser';
 import useImage from 'use-image';
 
 const styles = (theme) => ({
-  leftArea: {
-    width: '50%',
-    float: 'left',
-    'box-sizing': 'border-box',
-    'text-align' : 'center',
-  },
   share: {
     marginRight: theme.spacing(1),
     backgroundColor: '#fbe300',
     color: '#3b1e1e'
   },
-  rightArea: {
-    width: '50%',
-    float: 'right',
-    'box-sizing': 'border-box',
-    'margin-bottom': '40px',
-    'margin-top' : '40px',
-  },
   img: {
     'max-width': '70%',
     'max-height': '60%',
   },
-  btn: {
-    'text-align' : 'center',
-  }
 });
 
 const PreviewImg = () => {
@@ -112,45 +96,48 @@ function CashSpread(props) {
   }
 
   return (
-      <div>
-        <div className={classes.leftArea}>
-          <Stage ref={stageRef} width={300} height={270}>
-            <Layer>
-              <PreviewImg />
-            <Text
-              fontSize={14}
-              text={`빨리 줍줍 하세요!!\n\n금액은 랜덤!\n총 ${totalAmount}원\n최고 ${maxAmount}원\n\n기회는 선착순 1명 에게만\n10분 후 마감됩니다.`}
-              // wrap="char"
-              x={24}
-              y={150}
-              width={700}
-            />
-            </Layer>
-          </Stage>
-        </div>
-        <div className={classes.rightArea}>
-          <Grid container spacing={3}>
-               <Grid item>
-                <form className={classes.btn} noValidate autoComplete="off">
-                <TextField id="outlined-basicc" label="총 금액" variant="outlined" value = {totalAmount} onChange = {(e)=>onChangeAmount(e, setTotalAmount)}/>
-                </form>
-              </Grid>
+      <>
+        <Grid container spacing={3}>
+          <Grid item xs>
+              <Stage ref={stageRef} width={300} height={270}>
+                <Layer>
+                  <PreviewImg />
+                <Text
+                  fontSize={14}
+                  text={`빨리 줍줍 하세요!!\n\n금액은 랜덤!\n총 ${totalAmount}원\n최고 ${maxAmount}원\n\n기회는 선착순 1명 에게만\n10분 후 마감됩니다.`}
+                  // wrap="char"
+                  x={24}
+                  y={150}
+                  width={700}
+                />
+                </Layer>
+              </Stage>
+          </Grid>
+          <Grid item xs>
+            <Grid container spacing={3}>
               <Grid item>
                 <form className={classes.btn} noValidate autoComplete="off">
-                <TextField id="outlined-basicc" label="최고 금액" variant="outlined" value = {maxAmount} onChange = {(e)=>onChangeAmount(e, setMaxAmount)}/>
+                  <TextField id="outlined-basicc" label="총 금액" variant="outlined" value = {totalAmount} onChange = {(e)=>onChangeAmount(e, setTotalAmount)}/>
                 </form>
-              </Grid>
-              <Grid item>
-                <Button startIcon={<ShareIcon/>} variant="contained" color="primary" onClick={(e)=>onClickShare(e)} className={classes.share}>
-                    공유하기
-                </Button>
               </Grid>
             </Grid>
-            <div>
-            </div>
-        </div>
-      
-    </div>
+            <Grid container spacing={3}>
+              <Grid item>
+                <form className={classes.btn} noValidate autoComplete="off">
+                  <TextField id="outlined-basicc" label="최고 금액" variant="outlined" value = {maxAmount} onChange = {(e)=>onChangeAmount(e, setMaxAmount)}/>
+                 </form>
+                </Grid>
+             </Grid>
+             <Grid container spacing={3}>
+                <Grid item xs>
+                  <Button startIcon={<ShareIcon/>} variant="contained" color="primary" onClick={(e)=>onClickShare(e)} className={classes.share}>
+                      공유하기
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+    </>
   );
 }
 
