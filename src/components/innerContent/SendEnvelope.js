@@ -76,7 +76,7 @@ function SendEnvelope(props) {
         },
         buttons: [
             {
-                title: '줍기',
+                title: '받기',
                 link: {
                    mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
                 }

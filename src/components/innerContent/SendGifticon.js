@@ -57,39 +57,63 @@ function SendEnvelope(props) {
 
   //KAKAO API
   const onClickShare =() => {
-      window.Kakao.Link.sendDefault({
-        objectType: 'feed',
-        content: {
-            title: `${sender}님이 선물과 메시지를 보냈습니다.`,
-            description: '',
-            imageUrl: `${linkList[swipeIdx]}`, // 이미지
-            imageWidth: 150, imageHeight : 180,
-            link: {
-                mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg',
-                webUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
-            }
+        //템플릿 이용
+    window.Kakao.Link.sendCustom({
+        templateId: 29427 ,
+        templateArgs: {
+            'THU' : `${linkList[swipeIdx]}`,
+            'titles':  `${sender}님이 선물과 메시지를 보냈습니다.`,
+            'button' : '받기'
         },
-        buttons: [
-            {
-                title: '선물함으로 하기',
-                link: {
-                   mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
-                }
-            },
-            {
-              title: '감동카드 보내기',
-              link: {
-                 mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
-              }
-          }
-        ],
-          success: function(response) {
-              console.log(response);
-          },
-          fail: function(error) {
-              console.log(error);
-          }
-      });
+
+        // content: {
+        //         title: `${sender}님이 선물과 메시지를 보냈습니다.`,
+        //         description: '',
+        //         imageUrl: `${linkList[swipeIdx]}`, // 이미지
+        //         imageWidth: 150, imageHeight : 180,
+        //         link: {
+        //             mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg',
+        //             webUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
+        //         }
+        //       }
+    });
+
+
+
+
+      // window.Kakao.Link.sendDefault({
+      //   objectType: 'feed',
+      //   content: {
+      //       title: `${sender}님이 선물과 메시지를 보냈습니다.`,
+      //       description: '',
+      //       imageUrl: `${linkList[swipeIdx]}`, // 이미지
+      //       imageWidth: 150, imageHeight : 180,
+      //       link: {
+      //           mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg',
+      //           webUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
+      //       }
+      //   },
+      //   buttons: [
+      //       {
+      //           title: '선물함으로 하기',
+      //           link: {
+      //              mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
+      //           }
+      //       },
+      //       {
+      //         title: '감동카드 보내기',
+      //         link: {
+      //            mobileWebUrl: 'https://i.ibb.co/yB2dY9X/37886305.jpg'
+      //         }
+      //     }
+      //   ],
+      //     success: function(response) {
+      //         console.log(response);
+      //     },
+      //     fail: function(error) {
+      //         console.log(error);
+      //     }
+      // });
     }
   
     //SWIPE 버튼 관련
