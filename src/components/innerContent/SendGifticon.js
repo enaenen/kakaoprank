@@ -32,8 +32,8 @@ const styles = (theme) => ({
     maxWidth: 400,
     flexGrow: 1,
   },
-  parent: {
-    flexGrow: 1,
+  btnWrap: {
+    textAlign: 'center',
   },
   paper: {
     padding: theme.spacing(2),
@@ -137,50 +137,46 @@ function SendEnvelope(props) {
 
   return (
     <>
-    <div>
+    <Grid container spacing={3}>
+          <Grid item xs={3}>
+              <Button size="large" onClick={handleBack} disabled={activeStep === 0} className={classes.paper}>
+                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+              </Button>
+          </Grid>
+          <Grid item xs={6} className={classes.paper}>
+            <img src={linkList[swipeIdx]} className={classes.img} alt="x" />
+          </Grid>
+          <Grid item xs={3} className={classes.paper}>
+              <Button size="large" onClick={handleNext} disabled={activeStep === 7}>
+              {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+              </Button>
+          </Grid>
+
+    </Grid>
         <TextField id="outlined-basicc" label="보내는 사람" variant="outlined" value = {sender} onChange = {(e)=>onChangeSender(e)}/>
         <Button startIcon={<ShareIcon/>} variant="contained" color="primary" id="kakao-link-btn" className={classes.share} onClick={()=>onClickShare()}>
                  공유하기
           </Button>
-    </div>
-    <div className={classes.parent}>
-      <Grid container spacing={1} className={classes.paper}>
-        <Grid item xs={3}>
-            <Button size="large" onClick={handleBack} disabled={activeStep === 0} className={classes.paper}>
-              {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-            </Button>
 
-        </Grid>
-        <Grid item xs={6} className={classes.paper}>
-           <img src={linkList[swipeIdx]} className={classes.img} alt="x" />
-        </Grid>
-        <Grid item xs={3} className={classes.paper}>
-            <Button size="large" onClick={handleNext} disabled={activeStep === 7}>
-             {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </Button>
-        </Grid>
-      </Grid>
-    </div>
-
-    <MobileStepper
-      variant="dots"
-      steps={8}
-      position="static"
-      activeStep={activeStep}
-      className={classes.root}
-      nextButton={
-        <Button size="medium" onClick={handleNext} disabled={activeStep === 7}>
-          
-          {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-        </Button>
-      }
-      backButton={
-        <Button size="medium" onClick={handleBack} disabled={activeStep === 0}>
-          {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-          
-        </Button>
-      }
-    />
+      <MobileStepper
+        variant="dots"
+        steps={8}
+        position="static"
+        activeStep={activeStep}
+        className={classes.root}
+        nextButton={
+          <Button size="medium" onClick={handleNext} disabled={activeStep === 7}>
+            
+            {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+          </Button>
+        }
+        backButton={
+          <Button size="medium" onClick={handleBack} disabled={activeStep === 0}>
+            {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+            
+          </Button>
+        }
+      />
     </>
   );
 }
