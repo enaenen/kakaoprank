@@ -9,24 +9,12 @@ import useImage from 'use-image';
 import { Grid } from '@material-ui/core';
 
 const styles = (theme) => ({
-  // leftArea: {
-  //   width: '50%',
-  //   float: 'left',
-  //   'box-sizing': 'border-box',
-  //   'text-align' : 'center',
-  // },
+
   share: {
     marginRight: theme.spacing(1),
     backgroundColor: '#fbe300',
     color: '#3b1e1e'
   },
-  // rightArea: {
-  //   width: '50%',
-  //   float: 'right',
-  //   'box-sizing': 'border-box',
-  //   'margin-bottom': '60px',
-  //   'margin-top' : '40px',
-  // },
 });
 
 const PreviewImg = () =>{
