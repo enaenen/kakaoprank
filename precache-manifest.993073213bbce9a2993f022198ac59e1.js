@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0c12c3794a106d19e9284fd138a18356",
+    "revision": "0975e7ee50798cfd53cdd543b55f1691",
     "url": "/kakaoprank/index.html"
   },
   {
