@@ -49,27 +49,33 @@ function Header(props) {
           <Grid container spacing={1} alignItems="center">
             <Grid item xs />
             <Grid item>
-              <Link className={classes.link} href="#" variant="body2">
-                Go to docs
+            <IconButton color="inherit" className={classes.iconButtonAvatar}>
+                <Avatar src="https://avatars1.githubusercontent.com/u/33686751?s=460&u=3149f23f59631814a244b3be1059e3ed8a0785be&v=4" alt="My Avatar" />
+              </IconButton>
+              <Link className={classes.link} href="https://github.com/LouiMinister" target='blank' variant="body2">
+                LouiMinister
               </Link>
               </Grid>
               <Grid item>
-              <Link className={classes.link} href="#" variant="body2">
-                Go to docs
+              <IconButton color="inherit" className={classes.iconButtonAvatar}>
+                <Avatar src="https://avatars3.githubusercontent.com/u/13278955?s=460&u=21b03a32392f14ae9e09a44e6bddda9a58e6f2bf&v=4" alt="My Avatar" />
+              </IconButton>
+              <Link className={classes.link} href="https://github.com/enaenen" target='blank' variant="body2">
+              SpaceChae
               </Link>
             </Grid>
             <Grid item>
-              <Tooltip title="Alerts • No alerts">
+              {/* <Tooltip title="Alerts • No alerts">
                 <IconButton color="inherit">
                   <NotificationsIcon />
                 </IconButton>
-              </Tooltip>
+              </Tooltip> */}
             </Grid>
-            <Grid item>
+            {/* <Grid item>
               <IconButton color="inherit" className={classes.iconButtonAvatar}>
                 <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
               </IconButton>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Toolbar>
       </AppBar>
