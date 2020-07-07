@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/kakaoprank/static/js/main.0d103039.chunk.js",
-    "main.js.map": "/kakaoprank/static/js/main.0d103039.chunk.js.map",
+    "main.js": "/kakaoprank/static/js/main.90ff52dc.chunk.js",
+    "main.js.map": "/kakaoprank/static/js/main.90ff52dc.chunk.js.map",
     "runtime-main.js": "/kakaoprank/static/js/runtime-main.93c61575.js",
     "runtime-main.js.map": "/kakaoprank/static/js/runtime-main.93c61575.js.map",
-    "static/js/2.d5208633.chunk.js": "/kakaoprank/static/js/2.d5208633.chunk.js",
-    "static/js/2.d5208633.chunk.js.map": "/kakaoprank/static/js/2.d5208633.chunk.js.map",
+    "static/js/2.40ff3f75.chunk.js": "/kakaoprank/static/js/2.40ff3f75.chunk.js",
+    "static/js/2.40ff3f75.chunk.js.map": "/kakaoprank/static/js/2.40ff3f75.chunk.js.map",
     "index.html": "/kakaoprank/index.html",
-    "precache-manifest.1180ab8856718082fc2321da45ce7d09.js": "/kakaoprank/precache-manifest.1180ab8856718082fc2321da45ce7d09.js",
+    "precache-manifest.c2670ebfeaa3c0124a9b94eee880f1ec.js": "/kakaoprank/precache-manifest.c2670ebfeaa3c0124a9b94eee880f1ec.js",
     "service-worker.js": "/kakaoprank/service-worker.js",
-    "static/js/2.d5208633.chunk.js.LICENSE.txt": "/kakaoprank/static/js/2.d5208633.chunk.js.LICENSE.txt"
+    "static/js/2.40ff3f75.chunk.js.LICENSE.txt": "/kakaoprank/static/js/2.40ff3f75.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.93c61575.js",
-    "static/js/2.d5208633.chunk.js",
-    "static/js/main.0d103039.chunk.js"
+    "static/js/2.40ff3f75.chunk.js",
+    "static/js/main.90ff52dc.chunk.js"
   ]
 }
