@@ -137,7 +137,15 @@ function SendEnvelope(props) {
 
   return (
     <>
-    <Grid container spacing={3}>
+    <Grid container>
+    <Grid item>
+    <h2>공사중이라 미안합니다.</h2>
+    <img src="https://i.ibb.co/7CGTW7V/rhdtk.jpg"></img>
+  
+    </Grid>
+
+    </Grid>
+    {/* <Grid container spacing={3}>
           <Grid item xs={3}>
               <Button size="large" onClick={handleBack} disabled={activeStep === 0} className={classes.paper}>
                 {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
@@ -176,7 +184,7 @@ function SendEnvelope(props) {
             
           </Button>
         }
-      />
+      /> */}
     </>
   );
 }
