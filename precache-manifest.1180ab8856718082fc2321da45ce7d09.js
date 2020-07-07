@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0975e7ee50798cfd53cdd543b55f1691",
+    "revision": "285d4c6417bb61f43736aabacf5ead41",
     "url": "/kakaoprank/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/kakaoprank/static/js/2.d5208633.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a10536d71642e1b4d4ac",
-    "url": "/kakaoprank/static/js/main.81e9815c.chunk.js"
+    "revision": "8d97e0c5c67196dc846f",
+    "url": "/kakaoprank/static/js/main.0d103039.chunk.js"
   },
   {
     "revision": "2a908d6f6fd138b97ed6",
